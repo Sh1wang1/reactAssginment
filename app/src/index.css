@@ -1,0 +1,23 @@
+:root {
+  --primary: #1a237e;
+  --accent: #3949ab;
+  --success: #43a047;
+  --background: #f4f6fb;
+  --card: #fff;
+  --text: #222;
+  --border: #e0e3ea;
+  --radius: 10px;
+  --shadow: 0 4px 16px rgba(26,35,126,0.07);
+  --font: 'Segoe UI', 'Roboto', Arial, sans-serif;
+}
+body,html{
+  scrollbar-width: none;
+
+}
+body {
+  font-family: var(--font);
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  
+}
