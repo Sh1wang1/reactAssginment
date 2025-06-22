@@ -1,6 +1,6 @@
 # Item Manager
 
-A simple full-stack application for viewing and managing a list of items.
+A full-stack React application for managing items, with a Node.js/Express backend and MongoDB Atlas for persistent cloud storage.
 
 Live Link:https://reactassginment-frontend.onrender.com/
 
