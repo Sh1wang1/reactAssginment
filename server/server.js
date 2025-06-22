@@ -9,10 +9,23 @@ const adapter = new FileSync('db.json');
 const db = low(adapter);
 
 const app = express();
+
 app.use(cors({
-  origin: 'https://app-2rupgnlm7-sh1wang1s-projects.vercel.app'
+  origin: [
+    'http://localhost:5173', 
+    'http://localhost:3000', 
+    'https://app-2rupgnlm7-sh1wang1s-projects.vercel.app', 
+    'https://reactassginment.onrender.com' 
+  ],
+  credentials: true
 }));
+
 app.use(bodyParser.json());
+// Inside server.js or your main backend file
+app.get("/", (req, res) => {
+  res.send("Backend is working!");
+});
+
 
 app.get('/api/items', (req, res) => {
   const items = db.get('items').value();
