@@ -10,12 +10,10 @@ const db = low(adapter);
 
 const app = express();
 
-// ✅ CORRECTED: Dynamic CORS based on frontend URL
 const allowedOrigins = ['https://reactassginment-frontend.onrender.com'];
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like curl or Postman)
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -27,20 +25,34 @@ app.use(cors({
 
 app.use(bodyParser.json());
 
-// ✅ Test route to verify backend is up
 app.get("/", (req, res) => {
   res.send("Backend is working!");
 });
 
 app.get('/api/items', (req, res) => {
-  const items = db.get('items').value();
-  res.json(items);
+  try {
+    const items = db.get('items').value();
+    console.log(`📋 Returning ${items.length} items`);
+    res.json(items);
+  } catch (error) {
+    console.error('❌ Error fetching items:', error);
+    res.status(500).json({ error: 'Failed to fetch items' });
+  }
 });
 
 app.post('/api/items', (req, res) => {
-  const newItem = req.body;
-  newItem.id = Date.now();
-  res.status(201).json(newItem);
+  try {
+    const newItem = req.body;
+    newItem.id = Date.now();
+    
+    db.get('items').push(newItem).write();
+    
+    console.log('✅ New item saved:', newItem.name);
+    res.status(201).json(newItem);
+  } catch (error) {
+    console.error('❌ Error saving item:', error);
+    res.status(500).json({ error: 'Failed to save item' });
+  }
 });
 
 app.post('/api/enquire', async (req, res) => {
