@@ -13,9 +13,8 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:5173', 
-    'http://localhost:3000', 
-    'https://app-2rupgnlm7-sh1wang1s-projects.vercel.app', 
-    'https://reactassginment.onrender.com' 
+    'http://localhost:3000',  
+    'https://reactassginment.onrender.com'
   ],
   credentials: true
 }));
