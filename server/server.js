@@ -10,21 +10,27 @@ const db = low(adapter);
 
 const app = express();
 
+// ✅ CORRECTED: Dynamic CORS based on frontend URL
+const allowedOrigins = ['https://reactassginment-frontend.onrender.com'];
+
 app.use(cors({
-  origin: [
-    // 'http://localhost:5173', 
-    // 'http://localhost:3000',  
-    'https://reactassginment-frontend.onrender.com/'
-  ],
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like curl or Postman)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 
 app.use(bodyParser.json());
-// Inside server.js or your main backend file
+
+// ✅ Test route to verify backend is up
 app.get("/", (req, res) => {
   res.send("Backend is working!");
 });
-
 
 app.get('/api/items', (req, res) => {
   const items = db.get('items').value();
@@ -40,7 +46,6 @@ app.post('/api/items', (req, res) => {
 app.post('/api/enquire', async (req, res) => {
   const { item } = req.body;
 
-
   let testAccount = await nodemailer.createTestAccount();
 
   let transporter = nodemailer.createTransport({
@@ -55,7 +60,7 @@ app.post('/api/enquire', async (req, res) => {
 
   const mailOptions = {
     from: '"Item Manager" <no-reply@item-manager.com>',
-    to: 'test@example.com', // Static email ID
+    to: 'test@example.com',
     subject: `Enquiry about ${item.name}`,
     html: `
       <h1>New Enquiry</h1>
@@ -82,4 +87,4 @@ app.post('/api/enquire', async (req, res) => {
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
-}); 
+});
