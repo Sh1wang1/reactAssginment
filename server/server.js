@@ -9,31 +9,28 @@ const adapter = new FileSync('db.json');
 const db = low(adapter);
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://app-2rupgnlm7-sh1wang1s-projects.vercel.app'
+}));
 app.use(bodyParser.json());
 
-// API endpoint to get all items
 app.get('/api/items', (req, res) => {
   const items = db.get('items').value();
   res.json(items);
 });
 
-// API endpoint to add a new item
 app.post('/api/items', (req, res) => {
   const newItem = req.body;
-  newItem.id = Date.now(); // Simple ID generation
-  db.get('items').push(newItem).write();
+  newItem.id = Date.now();
   res.status(201).json(newItem);
 });
 
-// API endpoint to handle enquiry email
 app.post('/api/enquire', async (req, res) => {
   const { item } = req.body;
 
-  // Create a test account for Nodemailer
+
   let testAccount = await nodemailer.createTestAccount();
 
-  // Create a transporter
   let transporter = nodemailer.createTransport({
     host: 'smtp.ethereal.email',
     port: 587,
@@ -44,7 +41,6 @@ app.post('/api/enquire', async (req, res) => {
     },
   });
 
-  // Email content
   const mailOptions = {
     from: '"Item Manager" <no-reply@item-manager.com>',
     to: 'test@example.com', // Static email ID

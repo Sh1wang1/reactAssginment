@@ -18,7 +18,7 @@ const ItemDetailModal = ({ item, modalIsOpen, closeModal }) => {
     setEnquireStatus('Sending...');
     setPreviewUrl('');
     try {
-      const res = await axios.post('http://localhost:3001/api/enquire', { item });
+      const res = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/enquire`, { item });
       setEnquireStatus('Enquiry sent!');
       if (res.data.previewUrl) setPreviewUrl(res.data.previewUrl);
     } catch (err) {

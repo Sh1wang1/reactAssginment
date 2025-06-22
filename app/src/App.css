@@ -14,32 +14,6 @@
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
 
 .App {
   padding: 2rem;
@@ -220,15 +194,6 @@ header nav ul li a.active, header nav ul li a:hover {
   font-weight: 600;
   color: var(--primary);
   position: relative;
-}
-.add-item-form .input-icon {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.1rem;
-  color: #b0b6c3;
-  pointer-events: none;
 }
 .add-item-form input, .add-item-form textarea {
   padding: 0.8rem 0.8rem 0.8rem 2.2rem;

@@ -13,7 +13,8 @@ function App() {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const res = await axios.get('http://localhost:3001/api/items')
+        const res = await axios.get('https://reactassginment.onrender.com/items')
+
         setItems(res.data)
       } catch (err) {
         alert('Failed to fetch items from server')
@@ -26,7 +27,7 @@ function App() {
 
   const handleAddItem = async (newItem) => {
     try {
-      const res = await axios.post('http://localhost:3001/api/items', newItem)
+      const res = await axios.post('https://reactassginment.onrender.com/api/items', newItem);
       setItems((prev) => [res.data, ...prev])
     } catch (err) {
       alert('Failed to add item')
