@@ -16,6 +16,8 @@ Images:
 3)Enquire Item
 ![3](https://github.com/user-attachments/assets/81dc01d9-8437-4b36-95b5-f1f652baa99e)
 ![4](https://github.com/user-attachments/assets/17cedd6f-1481-4bb4-9400-dbca4d46d6cf)
+Enquiry Feature
+Uses Nodemailer + Ethereal for fake email previews.
 
 4)More Added item is Showing on View item
 ![image](https://github.com/user-attachments/assets/16d70fe3-32c9-44ec-96bc-c273dfd2c53a)
@@ -43,9 +45,9 @@ Images:
 - **nodemailer**: For sending emails.
 
 ## Project Structure
-
-- **/app**: Contains the React frontend application.
-- **/server**: Contains the Node.js/Express backend server.
+Frontend: React (Vite) in /app
+Backend: Node.js/Express in /server
+Database: MongoDB Atlas (cloud)
 
 ## How to Run
 
@@ -63,7 +65,6 @@ npm install
 # Run the server
 node server.js
 ```
-The server will start on `http://localhost:3001`.
 
 ### 2. Frontend Application
 
@@ -77,4 +78,3 @@ npm install
 # Run the development server
 npm run dev
 ```
-The React application will be available at the URL provided by Vite (usually `http://localhost:5173`).
