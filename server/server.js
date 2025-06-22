@@ -14,7 +14,7 @@ app.use(cors({
   origin: [
     'http://localhost:5173', 
     'http://localhost:3000',  
-    'https://reactassginment.onrender.com'
+    'https://reactassginment-frontend.onrender.com/'
   ],
   credentials: true
 }));
